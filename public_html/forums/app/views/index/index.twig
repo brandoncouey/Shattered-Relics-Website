@@ -1,0 +1,183 @@
+{%  extends 'layout.twig' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        {% include 'index/sidebar.twig' %}
+        
+        <div class="col-sm-12 col-lg-9">
+            
+            <div class="mb-3">
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle shadow-none"
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                        {% if sort is defined %}
+                        {{ sort|capitalize }}
+                        {% else %}
+                            Latest
+                        {% endif %}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        {% if curcat is defined %}
+                            {% set sorturl = friendlyTitle(curcat.id~'-'~curcat.title) %}
+                        {% else %}
+                            {% set sorturl = '' %}
+                        {% endif %}
+
+                        <a class="dropdown-item" 
+                                href="{{ url(sorturl~'?sort=latest') }}">
+                            Latest
+                        </a>
+                        <a class="dropdown-item" 
+                                href="{{ url(sorturl~'?sort=top') }}">
+                            Top
+                        </a>
+                        <a class="dropdown-item" 
+                                href="{{ url(sorturl~'?sort=newest') }}">
+                            Newest
+                        </a>
+                        <a class="dropdown-item" 
+                                href="{{ url(sorturl~'?sort=oldest') }}">
+                            Oldest
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="list-group list-group-flush">
+
+                {% for topic in topics.items() %}
+            
+                {% set avatar = 
+                    topic.avatar_url 
+                    ? url(topic.avatar_url, false)
+                    : url("public/img/user.jpg")
+                %}
+            
+                <div class="list-group-item border-0" style="line-height:0.8rem;">
+                    <div class="float-right">
+            
+                        <div class="mr-3 d-inline-block">
+                            {% if topic.sticky == 1 %}
+                            <span class="badge badge-info" data-toggle="tooltip" data-title="Sticky">
+                                <i class="fas fa-thumbtack"></i>
+                            </span>
+                            {% endif %}
+                            {% if topic.state == 1 %}
+                            <span class="badge badge-danger" data-toggle="tooltip" data-title="Closed">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                            {% endif %}
+                        </div>
+            
+                        <div class="btn btn-link text-dark disabled px-0">
+                            <i class="fal fa-comments-alt"></i> {{ topic.replies }}
+                        </div>
+            
+                        {% if user is defined %}
+                        <div class="dropdown">
+                            <button class="btn btn-link text-muted rounded-circle shadow-none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                <div class="dropdown-header text-dark">Topic Actions</div>
+                                
+                                {% if topic.author == user.getId() %}
+                                <a class="dropdown-item"
+                                     href="{{url('topic/edit/'~topic.id)}}">
+                                    <i class="fas fa-pencil-alt fa-fw text-light"></i>
+                                    Edit
+                                </a>
+                                {% endif %}
+            
+                                {% if user.isModerator() %}
+                                <a class="dropdown-item" href="{{url('topic/delete/'~topic.id)}}">
+                                    <i class="fas fa-trash-alt fa-fw text-light"></i>
+                                    Delete
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+            
+                    <div class="user_avatar" style="background-image:url('{{ avatar }}');"></div>
+                    
+                    <h6 class="mb-0">
+                        <a class="text-dark"
+                            href="{{ url('topic/view/'~friendlyTitle(topic.id~'-'~topic.title)) }}">
+                            {% if topic.is_read or user is not defined %}
+                                {{ topic.title|capitalize }}
+                            {% else %}
+                                <strong>{{ topic.title|capitalize }}</strong>
+                            {% endif %}
+                        </a>
+                    </h6>
+                    
+                    <small>
+                        <strong>{{ topic.username|capitalize }}</strong>
+                        <span class="text-muted">started {{ elapsed(topic.started) }}</span>
+                    </small>
+                </div>
+                
+                {% else %}
+                <p>There are currently no posts to view in this category.</p>
+                {% endfor %}
+            </div>
+            
+            <nav aria-label="servernav" class="my-5">
+                <ul class="pagination justify-content-center pagination-lg">
+                    <li class="page-item {{ topics.onFirstPage() ? 'disabled' : '' }}">
+                        <a class="page-link"
+                             href="{{ url('1') }}" tabindex="-1">
+                            <i class="fal fa-angle-double-left"></i>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item {{ topics.onFirstPage() ? 'disabled' : '' }}">
+                        <a class="page-link" 
+                            href="{{ url(topics.currentPage() == 1 ? 1 : topics.currentPage() - 1) }}" tabindex="-1">
+                            <i class="fal fa-angle-left"></i>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">
+                            {{ topics.currentPage() }}
+                        </a>
+                    </li>
+
+                    <li class="page-item {{ topics.currentPage() >= topics.lastPage() ? 'disabled' : '' }}">
+                        <a class="page-link" 
+                            href="{{ url(topics.currentPage() == topics.lastPage() ? topics.lastPage() : topics.currentPage() + 1) }}">
+                            <i class="fal fa-angle-right"></i>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item {{ topics.currentPage() >= topics.lastPage() ? 'disabled' : '' }}">
+                        <a class="page-link" 
+                            href="{{ url(topics.lastPage()) }}">
+                            <i class="fal fa-angle-double-right"></i>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            {{ content|raw }}
+            {% if curcat is defined and canpost %}
+            {% include 'modals/newtopic.twig' %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+    
+{%  endblock %}

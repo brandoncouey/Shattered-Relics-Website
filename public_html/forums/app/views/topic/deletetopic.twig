@@ -1,0 +1,41 @@
+{%  extends 'layout.twig' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-sm-12 col-lg-12">
+            
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <h4 class="mb-0 text-danger">Confirm Action</h4>
+                    <p class="mb-0">
+                        You're about to delete a topic, which will also delete all replies, and 
+                        is <span class="font-weight-bold">irreversible</span>.
+                    </p>
+                    <p class="mb-4">
+                        Are you sure you wish to delete this topic?
+                    </p>
+
+                    <form action="{{ url('topic/delete/'~topicId) }}" method="post">
+                        <input type="hidden" name="_token" value="{{ csrf_token }}">
+                        <div class="form-group mb-0">
+                            <button type="submit" class="btn btn-danger">
+                                Yes, delete topic
+                            </button>
+                            <a href="{{ url('topic/view/'~friendlyTitle(topic.id~' '~topic.title)) }}" 
+                                class="btn btn-link text-dark">
+                                No, take me back
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            {{ content|raw }}
+            
+        </div>
+    </div>
+</div>
+
+{%  endblock %}

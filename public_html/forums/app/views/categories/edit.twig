@@ -1,0 +1,120 @@
+{%  extends 'admin_layout.twig' %}
+
+{% block content %}
+{% include 'admin/sidebar.twig' %}
+
+<div class="main-content" id="panel">
+    {% include "admin/header.twig" %}
+
+    <div class="container-fluid">
+        <!-- Card stats -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card border-0 shadow-sm mb-3">
+                    <div class="card-header bg-transparent">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h6 class="text-uppercase text-muted ls-1 mb-1">
+                                    Forum
+                                </h6>
+                                <h2 class="mb-0">Edit Category: {{ category.title }}</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if errors is defined %}
+                    <div class="alert alert-danger rounded-0">
+                        <ul class="list-unstyled mb-0">
+                        {% for key, value in errors %}
+                        <li>{{ value }}</li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="card-body">
+                        <form method="post" action="{{ url('admin/categories/edit/'~category.id) }}">
+                            <div class="form-group">
+                                <h6 class="text-uppercase ls-1 mb-1 text-white-50">
+                                    Title
+                                </h6>
+                                <input class="form-control" name="title" value="{{ category.title }}">
+                            </div>
+
+                            <div class="form-group">
+                                <h6 class="text-uppercase ls-1 mb-1 text-white-50">
+                                    Icon Color
+                                </h6>
+
+                                <input type="color" class="form-control" id="favcolor" name="icon" value="{{ category.icon }}">
+                            </div>
+                            
+                            <div class="form-group">
+                                <h6 class="text-uppercase ls-1 mb-1 text-white-50">
+                                    Parent Category
+                                </h6>
+                                <select name="parent" class="form-control">
+                                    <option value="-1">No Parent</option>
+                                    {% for cat in categories %}
+                                    <option value="{{ cat.id }}" {{ cat.id == category.parent ? 'selected' : '' }}>
+                                        {{ cat.title }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="form-group form-row">
+                                <div class="col">
+                                    <h6 class="text-uppercase ls-1 mb-1 text-white-50">
+                                        Can View Topics
+                                    </h6>
+                                    {% set view_perms = decode(category.view_perms) %}
+
+                                    <select multiple name="view_perms[]" class="form-control" style="min-height:44px;">
+                                        {% for role in roles %}
+                                        <option value="{{ role.getName() }}" {{ in_array(role.getName(), view_perms) ? 'selected' : '' }}>
+                                            {{ role.getName() }}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <h6 class="text-uppercase ls-1 mb-1 text-white-50">
+                                        Can Post Topics
+                                    </h6>
+                                    {% set post_perms = decode(category.post_perms) %}
+
+                                    <select multiple name="post_perms[]" class="form-control" style="min-height:44px;">
+                                        {% for role in roles %}
+                                        <option value="{{ role.getName() }}" {{ in_array(role.getName(), post_perms) ? 'selected' : '' }}>
+                                            {{ role.getName() }}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                
+                            </div>
+
+                            <div class="custom-control custom-checkbox mb-5">
+                                <input class="form-check-input" type="checkbox" checked name="visible" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Is visible
+                                </label>
+                            </div>
+
+                            
+
+                            <div class="form-group mb-0">
+                                <button type="submit" class="btn btn-primary">
+                                    Save Changes
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ content|raw }}
+    </div>
+</div>
+{% endblock %}

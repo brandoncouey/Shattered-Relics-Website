@@ -1,0 +1,176 @@
+<section class="section-lg social-block">
+    <div class="container">
+        <div class="d-flex align-items-center text-center">
+            {#<div class="flex-fill">
+                <a href="" class="text-uppercase">
+                    <i class="fab fa-facebook-f fa-3x text-info"></i><br>
+                    Facebook
+                </a>
+            </div>
+            <div class="flex-fill">
+                <a href="" class="text-uppercase">
+                    <i class="fab fa-twitter fa-3x text-info"></i><br>
+                    Twitter
+                </a>
+            </div>
+            <div class="flex-fill">
+                <a href="" class="text-uppercase">
+                    <i class="fab fa-youtube fa-3x text-info"></i><br>
+                    Youtube
+                </a>
+            </div>#}
+            <div class="flex-fill">
+                <a href="https://www.instagram.com/shattered_relics/" class="text-uppercase">
+                    <i class="fab fa-instagram fa-3x text-info"></i><br>
+                    Instagram
+                </a>
+            </div>
+            <div class="flex-fill">
+                <a href="https://twitter.com/Relics_Official" class="text-uppercase">
+                    <i class="fab fa-twitter fa-3x text-info"></i><br>
+                    Twitter
+                </a>
+            </div>
+            <div class="flex-fill">
+                <a href="https://twitch.tv/ShatteredRelicsTV" class="text-uppercase">
+                    <i class="fab fa-twitch fa-3x text-info"></i><br>
+                    Twitch
+                </a>
+            </div>
+            <div class="flex-fill">
+                <a href="https://patreon.com/ShatteredRelics" class="text-uppercase">
+                    <i class="fab fa-patreon fa-3x text-info"></i><br>
+                    Patreon
+                </a>
+            </div>
+            <div class="flex-fill">
+                <a href="https://discord.shatteredrelics.com/" class="text-uppercase">
+                    <i class="fab fa-discord fa-3x text-info"></i><br>
+                    Discord
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-4">
+                <h5 class="mb-4">About <span>Shattered Relics</span></h5>
+                <p class="mb-5">
+                    Shattered Relics is an Action Based Massive Multiplayer Online Role Playing Game that is set in a high fantasy world offering classic old school experience with modern solutions.
+                    Developed and designed by industry experts and enthusiasts that have heard the communities cries that are left unfulfilled.
+                    Join our discord in our quest in delivering the community what they have been asking for!
+                </p>
+
+                <div class="d-flex mb-4 mb-lg-0">
+                    <div class="flex-fill w-100">
+                        <ul class="list-unstyled footer-links">
+                            <li>
+                                <a href="{{ url('game') }}" class="text-white">Game</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('faq') }}" class="text-white">FAQ</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('team') }}" class="text-white">Team</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex-fill w-100">
+                        <ul class="list-unstyled footer-links">
+                            <li>
+                                <a href="{{ url('privacy') }}" class="text-white">Privacy Policy</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('terms') }}" class="text-white">Terms of Service</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {#<div class="col-sm-12 col-lg-4">
+                <h5 class="mb-4">Latest <span>News</span></h5>
+
+                {% for news in footer_news %}
+                <div class="d-flex mb-3 align-items-center">
+                    #}{#<div class="pr-3">
+                        <img src="{{ url('public/imgs/post1.jpg') }}" class="img-fluid">
+                    </div>#}{#
+                    <div class="flex-fill">
+                        <a href="{{ url('forums/topic/view/'~friendlyTitle(news.id~' '~news.title)) }}" class="text-white d-block">
+                            {{ news.title }}
+                        </a>
+                        <small>News
+                            <i class="far fa-clock text-info"></i>
+                            {{ news.started|date("F d, Y") }}
+                            
+                        </small>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>#}
+
+            <div class="col-sm-12 col-lg-4">
+                <h5 class="mb-4">Latest <span>News</span></h5>
+
+                <div class="d-flex mb-3 align-items-center">
+                    <div class="flex-fill">
+                        <a href="https://discord.shatteredrelics.com" class="text-white d-block"> Public Testing Coming Soon!
+                        </a>
+                        <small>News
+                            <i class="far fa-clock text-info"></i>
+                            December 03, 2021
+                        </small>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+            <div class="col-sm-12 col-lg-4">
+                <h5 class="mb-4">Newsletter</h5>
+                <p>
+                    Want the latest news and updates directly to your inbox? Enter your email below
+                    to receive our newsletter!
+                </p>
+
+                <form action="{{ url('') }}" method="post" class="newsletter">
+                    <div class="form-group">
+                        <input type="email" class="form-control rounded-0 form-control-lg" name="sub_email"
+                            placeholder="Email Address">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-info btn-block rounded-0 text-white">
+                            Continue
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div class="copyright py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-6">
+                <p class="mb-3 mb-lg-0 small">
+                    Copyright &copy; 2018-{{ time()|date("Y") }} Grizzly Entertainment LLC. All rights reserved.
+                </p>
+            </div>
+            <div class="col-sm-12 col-lg-6">
+                <div class="d-flex flex-column flex-lg-row text-lg-right">
+                    <div class="flex-fill w-100">
+                        <a href="https://grizzlyent.com/careers" class="text-white small">
+                            Careers
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

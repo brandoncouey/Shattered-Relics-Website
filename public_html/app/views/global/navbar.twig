@@ -1,0 +1,143 @@
+<div class="topbar position-absolute w-100 mt-3">
+	<div class="container">
+		<div
+			class="d-flex justify-content-end">
+			{#<div class="px-2">
+			                <a href="" class="text-white">
+			                    <i class="fab fa-facebook-f"></i>
+			                </a>
+			            </div>
+			            <div class="px-2">
+			                <a href="" class="text-white">
+			                    <i class="fab fa-twitter"></i>
+			                </a>
+			            </div>
+			            <div class="px-2">
+			                <a href="" class="text-white">
+			                    <i class="fab fa-youtube"></i>
+			                </a>
+			            </div>#}
+			{#<div class="px-2">
+				<a href="https://instagram.com/shattered_relics" class="text-white">
+					<i class="fab fa-instagram"></i>
+				</a>
+			</div>#}
+
+
+			{# <div class="px-2">
+			                <a href="" class="text-white">
+			                    <i class="fab fa-twitch"></i>
+			                </a>
+			            </div>#}
+			<div class="px-2">
+				<a href="https://discord.shatteredrelics.com/" class="text-white">
+					<i class="fab fa-discord"></i>
+				</a>
+			</div>
+
+			
+			{% if user is defined %}
+				<div class="pl-3">
+					<div class="btn-group">
+						<a href="https://grizzlyent.com/account/" class="btn btn-info btn-sm py-1">
+							{{ user.username|capitalize }}
+						</a>
+						<a href="{{ url('?logout') }}" class="btn btn-info btn-sm">
+							Logout
+						</a>
+					</div>
+				</div>
+			{% else %}
+				<div class="pl-3">
+					<div class="btn-group">
+						<a href="https://grizzlyent.com/login" class="btn btn-info btn-sm py-1">
+							Sign In
+						</a>
+						<a href="{{ url('register') }}" class="btn btn-info btn-sm">
+							Register
+						</a>
+					</div>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent position-absolute w-100 mt-5">
+	<div class="container">
+		{#<a class="navbar-brand" href="{{ url('') }}">
+			<img src="{{ url('public/imgs/logo_small.png') }}" class="img-fluid" style="height:50px;">
+		</a>#}
+
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav ml-auto">
+
+				<li class="nav-item">
+					<a class="nav-link px-4" href="{{ url('game') }}">
+						Game
+					</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link px-4" href="{{ url('team') }}">
+						Team
+					</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link px-4" href="{{ url('faq') }}">
+						FAQ
+					</a>
+				</li>
+
+				{#<li class="nav-item">
+					<a class="nav-link px-4" href="https://grizzlyent.com/store/">
+						Store
+					</a>
+				</li>#}
+
+
+				{# <li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Features
+					</a>
+					<div class="dropdown-menu dropdown-menu-right animated fadeInDown fastest" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="{{ url('game') }}">Combat</a>
+						<a class="dropdown-item" href="{{ url('game/professions') }}">Professions</a>
+						<a class="dropdown-item" href="{{ url('game/quest') }}">Questing</a>
+                        <a class="dropdown-item" href="{{ url('game/quest') }}">Exploration</a>
+						<a class="dropdown-item" href="{{ url('game/pvp') }}">PvP</a>
+						<a class="dropdown-item" href="{{ url('game/pve') }}">PvE</a>
+					</div>
+				</li> #}
+
+				{#<li class="nav-item">
+					<a class="nav-link px-4" href="{{ url('forums') }}">
+						Community
+					</a>
+				</li>#}
+
+				{#<li class="nav-item">
+					<a class="nav-link px-4" href="{{ url('about') }}">
+						About
+					</a>
+				</li>#}
+
+                {# <li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Crowd Funding
+					</a>
+					<div class="dropdown-menu dropdown-menu-right animated fadeInDown fastest" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="{{ url('funding') }}">Campaign</a>
+                        <a class="dropdown-item" href="https://grizzlyent.com/store/">Store</a>
+					</div>
+				</li> #}
+			</ul>
+			{#<a class="btn btn-outline-info px-4" href="{{ url('download') }}">
+			                Download
+			            </a>#}
+		</div>
+	</div>
+</nav>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    {% block head %}
+        <title>{{ constant('site_title') }}</title>
+    {% endblock %}
+
+    <link rel="shortcut icon" type="image/png" href="{{ url('public/img/favicon.png') }}"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=0.87, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="{{ stylesheet('argon.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ stylesheet('custom.css') }}" />
+
+    {%  if dark_mode is defined  %}
+    <link rel="stylesheet" type="text/css" href="{{ stylesheet('bootstrap.dark.css') }}" />
+    {% endif %}
+
+    <script type="text/javascript" src="{{ javascript('jquery-3.3.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ javascript('fontawesome.pro.min.js') }}"></script>
+    <script type="text/javascript" src="{{ javascript('custom.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js" defer></script>
+
+
+    <link rel="stylesheet" type="text/css" href="{{ stylesheet('quill.snow.css') }}" />
+</head>
+<body>
+
+    {% if controller != "login" %}
+    {% include 'global/navbar.twig' %}
+    {% include 'global/header.twig' %}
+    {% endif %}
+
+    {% block content %}
+    {% endblock %}
+    
+    {% if controller != "login" %}
+    {% include 'global/footer.twig' %}
+    {% endif %}
+
+    <script type="text/javascript" src="{{ javascript('bootstrap.bundle.min.js') }}"></script>
+    <script type="text/javascript" src="{{ javascript('argon.min.js') }}"></script>
+</body>
+</html>

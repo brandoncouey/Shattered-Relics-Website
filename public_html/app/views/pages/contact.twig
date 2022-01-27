@@ -1,0 +1,83 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+{% include 'global/navbar.twig' %}
+
+<header class="small-header">
+    <div class="container">
+        <div class="d-flex align-items-center">
+            <div class="flex-fill">
+                <h2>Contact Us</h2>
+                <p>Send us a message with bug reports, offers, etc.</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="section-lg">
+    <div class="container">
+        <div class="row align-items-center py-5">
+
+            <div class="col-sm-12">
+                {% if error is defined %}
+                <p class="text-danger ">{{ error }}</p>
+                {% elseif errors is defined %}
+                <div class="mb-3">
+                {% for error in errors %}
+                <p class="text-danger mb-0">{{ error }}</p>
+                {% endfor %}
+                </div>
+                {% elseif success is defined %}
+                <p class="text-success">{{ success }}</p>
+                {% else %}
+                <p>&nbsp;</p>
+                {% endif %}
+
+                <form action="{{ url('contact') }}" method="post">
+                    <div class="form-group form-row">
+                        <div class="col">
+                            <label for="first_name">First Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="first_name" maxlength="255" id="first_name" required>
+                        </div>
+                        <div class="col">
+                            <label for="last_name">Last Name</label>
+                            <input type="text" class="form-control" name="last_name" maxlength="255" id="last_name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Contact Email <span class="text-danger">*</span></label>
+                        <input type="email" class="form-control" name="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reason">Reason for Contact</label>
+                        <select class="form-control" name="reason">
+                            <option value="bug">Glitch or Bug</option>
+                            <option value="suggestion">Suggestion</option>
+                            <option value="abuse">Player Abuse Report</option>
+                            <option value="offer">Offer</option>
+                            <option value="other">Other / Not Listed</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reason">More Information <span class="text-danger">*</span></label>
+                        <textarea class="form-control" name="message"
+                            style="height:200px;" required></textarea>
+                    </div>
+
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-dark btn-lg text-white">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+
+                {{ content|raw }}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'global/footer.twig' %}
+{% endblock %}

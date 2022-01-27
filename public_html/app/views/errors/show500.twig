@@ -1,0 +1,22 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+{% include 'global/navbar.twig' %}
+
+<header class="text-center">
+    <div class="d-flex align-items-center">
+        <div class="flex-fill">
+            <h2 class="mb-4">500 Server Error</h2>
+            <p>{{ errmsg }}</p>
+
+            <p>
+                <a href="{{ url('') }}" class="header-link">
+                    Return Home
+                </a>
+            </p>
+        </div>
+    </div>
+</header>
+
+{% include 'global/footer.twig' %}
+{% endblock %}

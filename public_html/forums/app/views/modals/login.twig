@@ -1,0 +1,183 @@
+<div class="modal fade" id="loginModal"
+        tabindex="-1"
+        role="dialog"
+        data-backdrop="static"
+        data-keyboard="false"
+        aria-labelledby="loginModalLabel"
+        aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+
+            <div class="alert-box">
+                <div class="alert mb-0" id="notice">
+                    &nbsp;
+                </div>
+            </div>
+            
+            <div class="modal-body">
+                <div id="loginForm">
+                    <form method="post" action="">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" name="email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" class="form-control">
+                        </div>
+                        <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" class="custom-control-input" 
+                                id="remember" name="remember">
+                            <label class="custom-control-label" for="remember">
+                                Keep me signed in
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" id="submit" class="btn btn-dark btn-block">Sign In</button>
+                            <a href="" class="btn btn-primary btn-block mb-3" id="discord">
+                                Sign in with Discord
+                            </a>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="form-group mb-0 text-center text-muted">
+                    <a class="text-muted" href="" data-dismiss="modal" aria-label="Close">Cancel</a> | 
+                    <a class="text-muted" href="">Need an account?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let loginForm = $('#loginForm');
+    let mfaForm;
+    let userId;
+
+    $('#discord').on("click", function(event) {
+        event.preventDefault();
+
+        let button = $(this);
+
+        disableButton(button);
+
+        $.post("{{ url('discord') }}", function(data) {
+            let success = data.success;
+            if (success) {
+                setTimeout(function() {
+                    let loc = data.message;
+                    window.location = loc;
+                }, 800);
+            }
+        })
+    })
+
+    loginForm.find("form").submit(function(event) {
+        event.preventDefault();
+
+        let form = $(this);
+
+        let button = form.find("#submit"); 
+        let email  = form.find('[name="email"]').val();
+        let passw  = form.find('[name="password"]').val();
+        let remem  = form.find('[name="remember"]').prop("checked")
+
+        disableButton(button);
+
+        let orig_txt = button.text();
+
+        $.post("{{ url('login') }}", {
+            email: email,
+            password: passw,
+            remember: remem
+        }, function(data) {
+            console.log(data);
+            
+            let need2fa = data.need2fa;
+            
+            if (need2fa) {
+                loginForm.fadeToggle(function() {
+                    mfaForm = $(data.formdata);
+
+                    loginForm.html(mfaForm);
+
+                    loginForm.fadeToggle("slow", function() {
+                        mfaForm.submit(mfaSubmit);
+                    });
+                });
+            } else {
+                let success = data.success;
+                let alert = $('.alert-box');
+
+                alert.find("#notice")
+                    .removeClass("alert-danger alert-success")
+                    .html(data.message)
+                    .addClass(data.success ? "alert-success" : "alert-danger");
+
+                if (success) {
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 700);
+                }
+
+                alert.stop(true, true).slideDown(300).delay(2500).slideUp(300, function() {
+                    resetButton(button, "Sign In");
+                });
+            }
+
+            console.log(data);
+        });
+    });
+    
+    let mfaSubmit = function(event) {
+        event.preventDefault();
+
+        let button   = mfaForm.find("#submit");
+        let orig_txt = button.text();
+        let code = $(this).find("#code").val();
+
+        disableButton(button);
+
+        $.post("{{ url('login/auth') }}", {
+            code: code,
+            userId: userId
+        }, function(data) {
+            let success = data.success;
+            let alert = $('.alert-box');
+
+            if (success) {
+                setTimeout(function() {
+                    window.location.reload();
+                }, 700);
+            }
+
+            alert.find("#notice")
+                .removeClass("alert-danger alert-success")
+                .html(data.message)
+                .addClass(success ? "alert-success" : "alert-danger");
+
+            alert.stop(true, true).slideDown(300).delay(2500).slideUp(300, function() {
+                resetButton(button, orig_txt);
+            });
+            console.log(data);
+            
+        });
+
+    }
+
+    function disableButton(button) {
+        button
+            .addClass("disabled")
+            .attr("disabled", "disabled")
+            .html("<i class=\"fad fa-spinner fa-pulse\"></i>");
+    }
+
+    function resetButton(button, orig_txt) {
+        button
+            .removeClass("disabled")
+            .removeAttr("disabled")
+            .html(orig_txt);
+    }
+</script>

@@ -1,0 +1,14 @@
+<div class="header bg-dark text-white mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 align-self-center">
+                {% if topic is defined %}
+                <h3 class="text-white mb-0">{{ topic['title'] }}</h3>
+                {% else %}
+                <h3 class="text-white mb-0">Shattered Relics Community</h3>
+                <p class="text-muted mb-0">A community for everyone.</p>
+                {% endif %}
+            </div>
+         </div>
+    </div>
+</div>

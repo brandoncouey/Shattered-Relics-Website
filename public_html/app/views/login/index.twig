@@ -1,0 +1,146 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+{% include 'global/navbar.twig' %}
+
+<header class="small-header">
+    <div class="container">
+        <div class="d-flex align-items-center">
+            <div class="flex-fill">
+                <h2>Sign In</h2>
+                <p>Sign into your Grizzly Entertainment account</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<section class="section-lg">
+    <div class="container">
+        <div class="d-flex align-items-center">
+            <div class="flex-fill" style="max-width:350px;margin:auto;">
+
+                {{ content|raw }}
+    
+                <div class="card border-0 bg-transparent">
+                    <div class="card-body">
+                        <h5 class="text-center mb-4">Sign In</h5>
+
+                        {% if error is defined %}
+                        <div class="alert alert-danger text-center">{{ error }}</div>
+                        {% elseif success is defined %}
+                        <div class="alert alert-success text-center">{{ success }}</div>
+                        {% endif %}
+
+                        <form action="{{ url('login') }}" method="post" id="loginForm">
+                            <div class="form-group">
+                                <input class="form-control form-control-lg" 
+                                    name="email" 
+                                    id="email" 
+                                    placeholder="Email Address"
+                                    type="email">
+                            </div>
+                            <div class="form-group mb-5">
+                                <div class="mb-2 text-right">
+                                    <a href="https://grizzlyent.com/recover" 
+                                        class="small text-muted mb-2"
+                                        target="_blank">
+                                        Forgot?
+                                    </a>
+                                </div>
+                                
+                                <input class="form-control form-control-lg" 
+                                    name="password" 
+                                    id="password" 
+                                    placeholder="Password"
+                                    type="password">
+                                    
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-info btn-block text-white">
+                                    Continue
+                                </button>
+                            </div>
+                            <div class="form-group">
+                                <a href="{{ url('login?discord') }}" 
+                                    class="btn btn-discord btn-block ml-0 mt-0">
+                                    Login with Discord
+                                </a>
+                            </div>
+    
+                            <div class="text-center text-muted small">
+                                <a href="{{ url('register') }}" class="text-muted">
+                                    Create an Account
+                                </a>
+                            </div>
+                                
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{#}
+<header>
+    <div class="d-flex align-items-center">
+        <div class="flex-fill" style="max-width:350px;margin:auto;">
+
+            {% if error is defined %}
+            <p class="text-danger">{{ error }}</p>
+            {% elseif success is defined %}
+            <p class="text-success">{{ success }}</p>
+            {% else %}
+            <p>&nbsp;</p>
+            {% endif %}
+
+            {{ content|raw }}
+
+            <div class="card border-0 bg-blur">
+                <div class="card-body">
+                    <h5 class="text-center my-4">Sign In</h5>
+                    <form action="{{ url('login') }}" method="post" id="loginForm">
+                        <div class="form-group mb-4">
+                            <input class="form-control form-control-lg" 
+                                name="email" 
+                                id="email" 
+                                placeholder="Email Address"
+                                type="email">
+                        </div>
+                        <div class="form-group mb-5">
+                            <input class="form-control form-control-lg" 
+                                name="password" 
+                                id="password" 
+                                placeholder="Password"
+                                type="password">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-info btn-block text-white">
+                                Continue
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <a href="{{ url('login?discord') }}" 
+                                class="btn btn-discord btn-block ml-0 mt-0">
+                                Login with Discord
+                            </a>
+                        </div>
+
+                        <div class="text-center text-muted">
+                            <a href="{{ url('') }}" class="text-muted">Cancel</a> | 
+                            <a href="{{ url('register') }}" class="text-muted">Create an Account</a>
+                        </div>
+                            
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+#}
+
+{% include 'global/footer.twig' %}
+{% endblock %}

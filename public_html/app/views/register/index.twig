@@ -1,0 +1,96 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+{% include 'global/navbar.twig' %}
+
+<header class="small-header">
+    <div class="container">
+        <div class="d-flex align-items-center">
+            <div class="flex-fill">
+                <h2>Register</h2>
+                <p>Create a Shattered Relics account to sign into the game!</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<section class="section-lg">
+    <div class="container">
+        <div class="d-flex align-items-center">
+            <div class="flex-fill" style="max-width:350px;margin:auto;">
+    
+                {{ content|raw }}
+    
+                <div class="card border-0 bg-transparent">
+                    <div class="card-body">
+                        <h5 class="text-center mb-4">Create Account</h5>
+
+                        {{ content|raw }}
+
+                        {% if errors is defined %}
+                        <div class="alert alert-danger">
+                            {% for error in errors %}
+                            <p class="mb-0">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                            {% if error is defined %}
+                            <div class="alert alert-danger text-center">{{ error }}</div>
+                            {% elseif success is defined %}
+                            <div class="alert alert-success text-center">{{ success }}</div>
+                            {% endif %}
+                        {% endif %}
+
+                        <form action="{{ url('register') }}" method="post" id="loginForm">
+                            <div class="form-group mb-4">
+                                <input class="form-control form-control-lg" 
+                                    name="username" 
+                                    id="username" 
+                                    placeholder="Display Name"
+                                    type="text">
+                            </div>
+                            <div class="form-group mb-4">
+                                <input class="form-control form-control-lg" 
+                                    name="email" 
+                                    id="email" 
+                                    placeholder="Email Address"
+                                    type="email">
+                            </div>
+                            <div class="form-group mb-4">
+                                <input class="form-control form-control-lg" 
+                                    name="password" 
+                                    id="password" 
+                                    placeholder="Password"
+                                    type="password">
+                            </div>
+                            <div class="form-group mb-5">
+                                <input class="form-control form-control-lg" 
+                                    name="repeat" 
+                                    id="repeat" 
+                                    placeholder="Repeat Password"
+                                    type="password">
+                            </div>
+
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-info btn-block text-white">
+                                    Continue
+                                </button>
+                            </div>
+                            <div class="form-group text-center small">
+                                <a href="https://grizzlyent.com/login" class="text-muted">
+                                    Already have an account?
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'global/footer.twig' %}
+{% endblock %}

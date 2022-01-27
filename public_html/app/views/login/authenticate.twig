@@ -1,0 +1,66 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+{% include 'global/navbar.twig' %}
+
+<header class="small-header">
+    <div class="container">
+        <div class="d-flex align-items-center">
+            <div class="flex-fill">
+                <h2>Verify Login</h2>
+                <p>Verify your login by entering the 6 digit code on your authenticator</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="section-lg">
+    <div class="container">
+        <div class="d-flex align-items-center">
+            <div class="flex-fill" style="max-width:350px;margin:auto;">
+
+                {{ content|raw }}
+    
+                <div class="card border-0 bg-transparent">
+                    <div class="card-body">
+                        <h5 class="text-center mb-4">Sign In</h5>
+
+                        {% if error is defined %}
+                        <div class="alert alert-danger text-center">{{ error }}</div>
+                        {% elseif success is defined %}
+                        <div class="alert alert-success text-center">{{ success }}</div>
+                        {% endif %}
+
+                        <form action="{{ url('login/authenticate') }}" method="post" id="loginForm">
+                            <div class="form-group mb-4">
+                                <label class="text-muted">6 Digit Code</label>
+                                <input type="number"
+                                    class="form-control"
+                                    name="code"
+                                    minlength="6"
+                                    maxlength="6"
+                                    max="999999">
+                            </div>
+
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-info btn-block text-white">
+                                    Continue
+                                </button>
+                            </div>
+
+                            <div class="form-group text-center small">
+                                <a href="{{ url('') }}" class="text-muted">Cancel</a>
+                            </div>
+                            
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% include 'global/footer.twig' %}
+{% endblock %}

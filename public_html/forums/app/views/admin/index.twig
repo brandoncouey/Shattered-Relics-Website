@@ -1,0 +1,230 @@
+{%  extends 'admin_layout.twig' %}
+
+{% block content %}
+{% include 'admin/sidebar.twig' %}
+
+<div class="main-content" id="panel">
+    {% include "admin/header.twig" %}
+
+    <div class="header">
+        <div class="container-fluid">
+            <div class="header-body">
+                <!-- Card stats -->
+                <div class="row">
+
+                    <div class="col-sm-12 col-lg-4 col-xl-4">
+                        <div class="card mb-4 shadow-sm overflow-hidden">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card-title text-uppercase text-muted mb-0">Members</h5>
+                                        <span class="h2 font-weight-bold mb-0">
+                                            {{ stats['users']['total']|number_format }}
+                                        </span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="icon icon-shape bg-danger text-white rounded-circle shadow-danger">
+                                            <i class="fal fa-users"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <p class="mt-3 mb-0 text-sm">
+                                    <span class="text-success">
+                                        +{{ stats['users']['monthly']|number_format }}
+                                    </span>
+                                    <span class="text-nowrap">members this month</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-lg-4 col-xl-4">
+                        <div class="card mb-4 shadow-sm overflow-hidden">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card-title text-uppercase text-muted mb-0">
+                                           Threads
+                                        </h5>
+                                        <span class="h2 font-weight-bold mb-0">
+                                            {{ stats['topics']['total']|number_format }}
+                                        </span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="icon icon-shape bg-success text-white rounded-circle shadow-success">
+                                            <i class="fal fa-comment-alt"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="mt-3 mb-0 text-sm">
+                                    <span class="text-success">
+                                        +{{ stats['topics']['monthly']|number_format }}
+                                    </span>
+                                    <span class="text-nowrap">new threads this month</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-lg-4 col-xl-4">
+                        <div class="card mb-4 shadow-sm overflow-hidden">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card-title text-uppercase text-muted mb-0">REPLIES</h5>
+                                        <span class="h2 font-weight-bold mb-0">
+                                            {{ stats['replies']['monthly']|number_format }}
+                                        </span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="icon icon-shape bg-info text-white rounded-circle shadow-info">
+                                            <i class="fal fa-comments-alt"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="mt-3 mb-0 text-sm">
+                                    <span class="text-success">
+                                        +{{ stats['replies']['monthly']|number_format }}
+                                    </span>
+                                    <span class="text-nowrap">replies this month</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card border-0 shadow-sm mb-3">
+                            <div class="p-3 pt-4 chart">
+                                <canvas id="chart-orders" class="chart-canvas"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{ content|raw }}
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="{{ url('public/js/chart.min.js') }}" defer></script>
+<script type="text/javascript" src="{{ url('public/js/chart.extension.js') }}" defer></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(event) {
+    Chart.plugins.register({
+        beforeDraw: function(chartInstance) {
+            var ctx = chartInstance.chart.ctx;
+            ctx.fillStyle = "rgba(0,0,0,0)";
+            ctx.fillRect(0, 0, chartInstance.chart.width, chartInstance.chart.height);
+        }
+    });
+    
+    window.chartColors = {
+        red:    'rgb(255, 99, 132)',
+        orange: 'rgb(255, 159, 64)',
+        yellow: 'rgb(255, 205, 86)',
+        green:  'rgb(75, 192, 192)',
+        blue:   'rgb(54, 162, 235)',
+        purple: 'rgb(94, 114, 228)',
+        purpleLight: 'rgba(94, 114, 228, 0.05)',
+        grey:   'rgb(201, 203, 207)'
+    };
+
+    var options = {};
+
+    options.maintainAspectRatio = false;
+    options.stacked = false;
+    options.response = true;
+    options.elements = {};
+    options.elements.line = {};
+    options.elements.point = {};
+    options.scales = {};
+    options.title = {};
+    options.tooltips = {mode: 'x-axis'};
+    options.tooltips.callbacks = {};
+    options.legend = {};
+    options.legend.labels = {};
+    options.elements.line.fill = true;
+    options.elements.line.borderWidth = 1;
+    options.elements.point.radius = 0;
+    options.title.display = false;
+    options.title.text = "Votes for {{ ''|date('Y') }}";
+    options.legend.display = true;
+    options.legend.position = "bottom";
+    options.animation = false;
+    options.elements.line.tension = 0;
+
+    options.scales.xAxes = [{
+        barPercentage: 0,
+        ticks: {
+            display: false,
+            fontColor: "#AAA"
+        },
+        gridLines: {
+            color: "rgba(0, 255, 0, 0)",
+            drawBorder: false,
+        }
+    }];
+
+    options.scales.yAxes = [{
+        ticks: {
+            display: false,
+            fontColor: "#AAA"
+        },
+        gridLines: {
+            drawBorder: true,
+            color: "rgba(94, 114, 228, 0.1)"
+        }
+    }];
+
+    options.scales.xAxes = [{
+        barPercentage: 0,
+        ticks: { display: true },
+        gridLines: {
+            color: "rgba(0, 0, 0, 0)",
+            drawBorder: false,
+        }
+    }];
+
+    options.scales.yAxes = [{
+        ticks: { display: true },
+        gridLines: {  drawBorder: true }
+    }];
+
+    let element = document.getElementById("chart-orders");
+    let context = element.getContext("2d"); 
+
+    let chart = new Chart(context, {
+        type: 'line',
+        data: {
+            labels: {{ chart_cols|json_encode|raw }},
+            datasets: [
+                {
+                    label: 'Topics',
+                    data: {{ thread_data|json_encode|raw }},
+                    borderColor: window.chartColors.green,
+                    backgroundColor:  window.chartColors.green,
+                    hoverBackgroundColor: window.chartColors.purpleLight,
+                    barWidth: 2,
+                    fill: false
+                },
+                {
+                    label: 'Replies',
+                    data: {{ reply_data|json_encode|raw }},
+                    borderColor: window.chartColors.blue,
+                    backgroundColor:  window.chartColors.blue,
+                    hoverBackgroundColor: window.chartColors.purpleLight,
+                    barWidth: 2,
+                    fill: false
+                }
+            ]
+        },
+        options: options
+    });
+});
+</script>
+{% endblock %}

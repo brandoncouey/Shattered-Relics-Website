@@ -1,0 +1,63 @@
+<div class="col-sm-12 col-lg-3">
+
+    {% if user is defined and curcat is defined and canpost %}
+    <a href="" class="btn btn-info btn-block mb-4" data-toggle="modal" data-target="#topicModal">
+        Start a Discussion
+    </a>
+    {% else %}
+    <a href="" class="btn btn-info btn-block mb-4 disabled">
+        Start a Discussion
+    </a>
+    {% endif %}
+
+    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a href="{{ url('') }}"
+            class="nav-link rounded-0 shadow-none {{ curcat is not defined ? 'active' : ''}}">
+
+            <span class="forum-icon" style="background-color: #11cdef;"></span>
+            All Discussions
+        </a>
+
+        {% for cat in categories %}
+        {% set active = curcat['id'] == cat['id'] %}
+
+        {% if curcat is defined %}
+            {% set sorturl = friendlyTitle(curcat['id']~'-'~curcat['title']) %}
+        {% else %}
+            {% set sorturl = '' %}
+        {% endif %}
+        
+        <style>
+            .nav-pills .nav-link[id="cat-{{ cat['id'] }}"]:hover {
+                color: {{ cat['icon'] }} !important;
+            }
+            .nav-pills .nav-link.active[id="cat-{{ cat['id'] }}"], 
+            .nav-pills .show>.nav-linkk[id="cat-{{ cat['id'] }}"] {
+                color: {{ cat['icon'] }} !important;
+            }
+        </style>
+
+        <a href="{{ url(friendlyTitle(cat['id']~'-'~cat['title'])) }}" id="cat-{{ cat['id'] }}"
+            class="nav-link rounded-0 shadow-none {{ active ? 'active' : ''}}">
+
+            <span class="forum-icon" style="background-color: {{ cat['icon'] }};"></span>
+
+            {{ cat['title']}}
+        </a>
+
+        {% if cat['children'] %}
+            {% for child in cat['children'] %}
+            {% set active = curcat['id'] == child['id'] %}
+
+            <a href="{{ url(friendlyTitle(child['id']~'-'~child['title'])) }}"
+                class="nav-link rounded-0 subnav {{ active ? 'active' : ''}}">
+                {{ child['title']}}
+            </a>
+            {% endfor %}
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    <hr>
+    
+</div>

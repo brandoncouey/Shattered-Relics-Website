@@ -1,0 +1,119 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+{% include 'global/navbar.twig' %}
+
+<header class="main-header text-center">
+    <div class="container">
+        <div class="d-flex align-items-center">
+            <div class="flex-fill">
+                <p>
+                    <div class="px-3 d-inline-block small">
+                        <i class="far fa-tags"></i> MMORPG
+                    </div>
+
+                    <div class="px-3 d-inline-block small">
+                        <i class="far fa-tags"></i> Unreal Engine 5
+                    </div>
+                </p>
+
+                <h1 class="mb-4">
+                    <img src="{{ url('public/imgs/logo.png') }}"
+                        class="img-fluid">
+                </h1>
+
+                <p>
+                    {#Coming Soon.#}
+                </p>
+                <p>
+                    {#<a href="#" class="header-link">Game Details</a>#}
+                    {#<a href="#" class="header-link">Download Now</a>#}
+                </p>
+            </div>
+        </div>
+    </div>
+</header>
+
+{#<section class="section-lg">
+    <div class="container">
+        <div class="row align-items-center py-5">
+            <div class="col-sm-12 col-lg-5">
+                <img height="275px" width="100px" src="{{ url('public/imgs/the-world.jpg') }}"
+                    class="w-100 mb-3 mb-lg-0 shadow">
+            </div>
+            
+            <div class="col-sm-12 col-lg-7">
+                <h1 class="title mb-4">
+                    <small>The</small>
+                    <br><span class="text-info">Story</span>
+                </h1>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh 
+                    euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim 
+                    minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut 
+                    aliquip ex lorem.
+                </p>
+                <a href="" class="text-info">Read More</a>
+            </div>
+        </div>
+
+        <div class="row align-items-center flex-lg-row-reverse py-5">
+            <div class="col-sm-12 col-lg-5">
+                <img src="{{ url('public/imgs/post1.jpg') }}"
+                    class="w-100 mb-3 mb-lg-0 shadow">
+            </div>
+            
+            <div class="col-sm-12 col-lg-7">
+                <h1 class="title mb-4">
+                    <small>The</small>
+                    <br><span class="text-info">Characters</span>
+                </h1>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh 
+                    euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim 
+                    minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut 
+                    aliquip ex lorem.
+                </p>
+                <a href="" class="text-info">Read More</a>
+            </div>
+        </div>
+
+        <div class="row align-items-center py-5">
+            <div class="col-sm-12 col-lg-5">
+                <img src="{{ url('public/imgs/feature.jpg') }}"
+                    class="w-100 mb-3 mb-lg-0 shadow">
+            </div>
+            
+            <div class="col-sm-12 col-lg-7">
+                <h1 class="title mb-4">
+                    <small>The</small>
+                    <br><span class="text-info">Team</span>
+                </h1>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh 
+                    euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim 
+                    minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut 
+                    aliquip ex lorem.
+                </p>
+                <a href="" class="text-info">Read More</a>
+            </div>
+        </div>
+    </div>
+</section>#}
+
+{#<section class="section-lg bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-sm-12">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" 
+                    src="https://player.vimeo.com/video/221336980" 
+                    allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>#}
+
+{% include 'global/footer.twig' %}
+{% endblock %}

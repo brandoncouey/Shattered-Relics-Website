@@ -1,0 +1,9 @@
+{% block alerts %}
+    {%  if error is defined %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+
+    {%  if success is defined %}
+        <div class="alert alert-success">{{ success }}</div>
+    {% endif %}
+{% endblock %}
