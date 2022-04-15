@@ -5,8 +5,8 @@ define("title", "Shattered Relics");
 
 define('MYSQL_HOST', 'grizzlyent.cpde7dtfjvvy.us-west-2.rds.amazonaws.com'); # usually localhost
 define('MYSQL_DATABASE', 'grizzly');
-define('MYSQL_USERNAME', 'test');
-define('MYSQL_PASSWORD', 'toodlesyacunt!');
+define('MYSQL_USERNAME', 'admin');
+define('MYSQL_PASSWORD', '!003786dc');
 
 
 const discord = [
