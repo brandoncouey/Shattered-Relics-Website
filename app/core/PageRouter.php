@@ -62,24 +62,24 @@ class PageRouter extends Router {
         $this->all("game", function() {
             return $this->setRoute("game", "index");
         });
-        /*$this->all("game/combat", function() {
-            return $this->setRoute("game", "combat");
+        $this->all("game/trades", function() {
+            return $this->setRoute("game", "trades");
         });
-        $this->all("game/professions", function() {
-            return $this->setRoute("game", "professions");
+        $this->all("game/questing", function() {
+            return $this->setRoute("game", "questing");
         });
-        $this->all("game/exploration", function() {
-            return $this->setRoute("game", "exploration");
+        $this->all("game/races", function() {
+            return $this->setRoute("game", "races");
         });
-        $this->all("game/quest", function() {
-            return $this->setRoute("game", "quest");
+        $this->all("game/classes", function() {
+            return $this->setRoute("game", "classes");
         });
         $this->all("game/pvp", function() {
             return $this->setRoute("game", "pvp");
         });
         $this->all("game/pve", function() {
             return $this->setRoute("game", "pve");
-        });*/
+        });
 
 
         /**
@@ -94,18 +94,11 @@ class PageRouter extends Router {
             return $this->setRoute('pages', 'team');
         });
 
-        $this->all('terms', function() {
-            return $this->setRoute('pages', 'terms');
-        });
-        $this->all('privacy', function() {
-            return $this->setRoute('pages', 'privacy');
-        });
-
-        /*$this->all('funding', function() {
+        $this->all('funding', function() {
             return $this->setRoute('pages', 'funding');
-        });*/
+        });
 
-        /*$this->all('contact', function() {
+       /*$this->all('contact', function() {
             return $this->setRoute('pages', 'contact');
         });
         $this->all('terms', function() {
@@ -113,8 +106,8 @@ class PageRouter extends Router {
         });
         $this->all('privacy', function() {
             return $this->setRoute('pages', 'privacy');
-        });
-        */
+        });*/
+
     }
 
     public function setRoute($controller, $method, $params = []) {

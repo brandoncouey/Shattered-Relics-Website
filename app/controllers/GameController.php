@@ -5,19 +5,15 @@ class GameController extends Controller {
         return true;
     }
 
-    public function combat() {
+    public function classes() {
         return true;
     }
 
-    public function professions() {
+    public function races() {
         return true;
     }
 
-    public function exploration() {
-        return true;
-    }
-
-    public function quest() {
+    public function questing() {
         return true;
     }
 
@@ -26,6 +22,10 @@ class GameController extends Controller {
     }
 
     public function pve() {
+        return true;
+    }
+
+    public function trades() {
         return true;
     }
 

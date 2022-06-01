@@ -1,0 +1,112 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+{% include 'global/navbar.twig' %}
+
+<header class="small-header">
+    <div class="container">
+        <div class="d-flex align-items-center">
+            <div class="flex-fill">
+                <h2>PLAYER VS. PLAYER</h2>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="section-lg">
+    <div class="container">
+
+        <div class="row align-items-center py-5">
+            <div class="col-sm-12 ">
+                <h1 class="title mb-4">
+                    <br><span class="text-info">LEADERBOARDS</span>
+                </h1>
+                <p>
+                    Players that exceed over a specific matchmaking rating will appear on the website leaderboards with their current class, specialization and rating.
+                    The leaderboards will be reset every 4 months when a new season starts and players will have to battle to achieve rank one again.
+                </p>
+                <h5>HIGH RANKED</h5>
+                <p>Highly ranked players that are ranked in the top 9 will have an overhead icon in their nameplate that is toggleable to display their current rank in the leaderboards to allow them
+                to show off their accomplishment and hard work.</p>
+            </div>
+        </div>
+
+        <div class="row align-items-center py-5">
+            <div class="col-sm-12 ">
+                <h1 class="title mb-4">
+                    <span class="text-info">RANKED & UNRANKED</span>
+                </h1>
+                <h4>RANKED</h4>
+                <p>Each player will have a matchmaking rating that will be used to calculate similar ranked teams to match with.
+                Players will only be able to queue for a ranked match with a pre-made group and cannot solo queue into them.</p>
+                <ul>
+                    <li>Losing to a team with a lower rating will have a severe impact on your team's rating and will reduce it greatly.</li>
+                    <li>Winning to a team with a lot higher rating will greatly increase your teams rating based upon the difference.</li>
+                </ul>
+
+                <h6>REWARDS</h6>
+                <p>Earn titles and pvp currency to purchase materials to craft high tier pvp equipment, and as you achieve higher rating players will be able to purchase
+                materials to craft gladiator equipment, gladiator titles, and unique effects to their equipment.</p>
+
+                <hr>
+
+                <h4>UNRANKED</h4>
+                <p>Join in for fun and practice without hurting your matchmaking rating with a premade group or solo queue to get better at PvP.</p>
+                <h6>REWARDS</h6>
+                <p>Earn titles and pvp currency to purchase materials to craft low-mid tier pvp equipment.</p>
+            </div>
+        </div>
+
+        <div class="row align-items-center py-5">
+            <div class="col-sm-12 col-lg-5">
+                <img src="{{ url('public/imgs/post1.jpg') }}"
+                    class="w-100 mb-3 mb-lg-0 shadow">
+            </div>
+
+            
+            <div class="col-sm-12 col-lg-7">
+                <h1 class="title mb-4">
+                    <span class="text-info">ARENAS</span>
+                </h1>
+                <p>Queue into arenas with a pre-made group or queue in solo and get auto-matched with random team members.</p>
+                <h4>MODES</h4>
+                <ul>
+                    <li><h6>1v1</h6></li>
+                    <li><h6>2v2</h6></li>
+                    <li><h6>3v3</h6></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row align-items-center py-5">
+
+            <div class="col-sm-12 col-lg-7">
+                <h1 class="title mb-4">
+                    <span class="text-info">BATTLEGROUNDS</span>
+                </h1>
+                <p>Queue into arenas with a pre-made group or queue in solo and get auto-matched with random team members.</p>
+                <h4>SIZES</h4>
+                <ul>
+                    <li><h6>10v10</h6></li>
+                    <li><h6>15v15</h6></li>
+                    <li><h6>20v20</h6></li>
+                </ul>
+                <h4>MODES</h4>
+                <ul>
+                    <li><h6>King of the Hill</h6></li>
+                    <li><h6>Capture the Flag</h6></li>
+                    <li><h6>Last Man Standing (Solo & Group)</h6></li>
+                </ul>
+            </div>
+
+            <div class="col-sm-12 col-lg-5">
+                <img src="{{ url('public/imgs/post1.jpg') }}"
+                     class="w-100 mb-3 mb-lg-0 shadow">
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% include 'global/footer.twig' %}
+{% endblock %}

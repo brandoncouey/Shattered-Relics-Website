@@ -1,0 +1,154 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+{% include 'global/navbar.twig' %}
+
+<header class="small-header">
+    <div class="container">
+        <div class="d-flex align-items-center">
+            <div class="flex-fill">
+                <h2>TRADES</h2>
+                {#<p>Learn about the 25 trades you can decide upon to specialize and master in the world and give yourself a purpose and role.</p>#}
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="section-lg">
+    <div class="container">
+
+        <div class="row align-items-center py-5">
+            <div class="col-sm-12 ">
+                <h1 class="title mb-4">
+                    <span class="text-info">SUMMARY</span>
+                </h1>
+                <p>
+                    Trades are the backbone and foundation of the entire economy throughout the world. Players will remain responsible for specializing and mastering their trade to serve their unique purpose in the world and contribute to the economy
+                    in the massive demand for raw materials, refined materials, and crafted items to aid everyone throughout their adventure. We strongly strive to allow the player to choose a role they desire and give them a unique purpose in the world that gives them meaning and purpose to contribute to as they wish.
+                    Players will be able to specialize in two individual trades and will receive bonuses, become more effective, and be granted the ability to craft, gather or refine higher tier resources. Trades that are not specialized will be less effective, and restricted to low-mid tier options. This allows players
+                    to become more of a special required role throughout the world and feel needed and become more valuable to the community rather than a 'Jack of all Trades'.
+                </p>
+            </div>
+        </div>
+
+        <div class="row align-items-center py-5">
+            <div class="col-sm-12 ">
+                <h1 class="title mb-4">
+                   <span class="text-info">TRAINING METHODS</span>
+                </h1>
+                <p>
+                    We will offer one or more training methods for specific trades to allow the player different paces to train and master their trades. These methods will contain different levels of participation for different outcomes.
+                    This allows players to decide how they wish to play the game and choose the option that fits their gameplay style desires best.
+                </p>
+                    <h3>
+                    INTERACTIVE
+                    </h3>
+                <p>The interactive training method is a more participation reliant method that involves a small mini-game that will allow the player to reduce the chance of failure and speed up the process of the action.</p>
+                <h6>EXAMPLE</h6>
+                You're cooking a piece of meat and a progress bar would appear; The progress bar would have a colored meter of when not to pull it off and when to pull it off. The experience received will be determined on how precise you are
+                with pulling the piece of meat off when the progress bar tells you to. If you pull it off to early you will receive less experience or if you pull it off at the perfect time it will provide an experience bonus. Otherwise you will be rewarded with the base experience
+                for the piece of meat.
+                <hr>
+                <h3>
+                    CASUAL
+                </h3>
+                The casual training method would be less effective but more traditional. Allowing the player to be more relaxed while they sit and wait and not worry about precision while still being able to reasonably progress throughout the game.
+            </div>
+        </div>
+
+        <div class="row align-items-center py-5">
+            <div class="col-sm-12 ">
+                <h1 class="title mb-4">
+                    <span class="text-info">TRADE LEVELS</span>
+                </h1>
+                <p><small style="font-size: 14px">UNTRAINED  <strong>></strong>  BEGINNER  <strong>></strong>  APPRENTICE  <strong>></strong>  JOURNEYMAN  <strong>></strong>  EXPERT  <strong>></strong>  MASTER  <strong>></strong> GRANDMASTER</small></p>
+                <p>These levels are used in every layer in our leveling system to define the total completion percentage for every trade, every trade category and trade technique.</p>
+                <hr>
+            </div>
+        </div>
+
+        <div class="row align-items-center py-5">
+            <div class="col-sm-12 ">
+                <h1 class="title mb-4">
+                    <span class="text-info">THE HIERARCHY</span>
+                    <p>We break down each element down into a categories and allow players to master the individual trades, trade categories and to even become a Master Tradesmen. </p>
+                </h1>
+                    <h3>TRADESMEN</h3>
+                    <h5>GATHERER</h5>
+                    <ul>
+                        <li><h6>Archeologist</h6></li>
+                        <li><h6>Miner</h6></li>
+                        <li><h6>Herbalist</h6></li>
+                        <li><h6>Hunter</h6></li>
+                        <li><h6>Skinner</h6></li>
+                        <li><h6>Fisherman</h6></li>
+                        <li><h6>Logger</h6></li>
+                    </ul>
+                    <h5>REFINER</h5>
+                    <ul>
+                        <li><h6>Smelter</h6></li>
+                        <li><h6>Woodworker</h6></li>
+                        <li><h6>Stonecutter</h6></li>
+                        <li><h6>Tanner</h6></li>
+                        <li><h6>Weaver</h6></li>
+                    </ul>
+                    <h5>CRAFTER</h5>
+                    <ul>
+                        <li><h6>Alchemist</h6></li>
+                        <li><h6>Chef</h6></li>
+                        <li><h6>Smith</h6></li>
+                        <li><h6>Engineer</h6></li>
+                        <li><h6>Inscripter</h6></li>
+                        <li><h6>Jewelcrafter</h6></li>
+                        <li><h6>Leatherworker</h6></li>
+                        <li><h6>Tailor</h6></li>
+                        <li><h6>Enchanter</h6></li>
+                        <li><h6>Fletcher</h6></li>
+                        <li><h6>Carpenter</h6></li>
+                    </ul>
+            </div>
+        </div>
+
+        <div class="row align-items-center py-5">
+            <div class="col-sm-12 ">
+                <h1 class="title mb-4">
+                    <span class="text-info">PROGRESSION</span>
+                </h1>
+                <p>The progression of trades as a whole follows a linear hierarchy that evolve around progression states. The trade experience is a sum of all of the trade's categories added up together to result in it's total experience.</p>
+
+                <h4>TECHNIQUES</h4>
+                <p>Techniques are considered 'sub skills' and can be classified as either a technique or style within a trade itself that a player will individually train and progress to increase their overall progression of the trade.</p>
+                Experience gained through categories will count towards increasing your state within the trade as a whole. The experience needed to increase your trade state is the experience needed for a trade to reach a specific state multiplied by the number of categories within the trade.
+                <hr>
+            <h4>EXAMPLE</h4>
+                <h6>TRADE - UNTRAINED FISHERMAN</h6>
+                <small style="font-size: 14px">TECHNIQUES</small>
+                <ul>
+                    <li style="font-size: 14px">Untrained Cage Fisherman</li> (14,500XP needed Beginner)
+                    <li style="font-size: 14px">Beginner Fly Fisherman</li> (32,750 XP needed for Apprentice)
+                    <li style="font-size: 14px">Untrained Deepsea Fisherman</li> (14,500XP needed for Beginner)
+                </ul>
+                <p>Given the players current experience the player would currently resign at a Untrained Fisherman and would need to achieve a total experience of 43,500XP in any technique to become a Beginner Fisherman</p>
+                <p>HORIZONTAL PROGRESSION</p>
+                <p>A player will be able to catch low tier fish in both techniques of fly and cage - but some categories can or will be locked behind a trade state. For example; A player will not be able to do deep sea fishing until they are at-least a Journeyman in Fishing. Therefor
+                they would need to achieve enough experience in Fly and Cage fishing to average themselves out to be a Journeyman Fisherman to unlock Deepsea Fishing.</p>
+            </div>
+        </div>
+
+        <div class="row align-items-center py-5">
+            <div class="col-sm-12 ">
+                <h1 class="title mb-4">
+                    <span class="text-info">MASTERY</span>
+                </h1>
+                <p></p>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</section>
+
+{% include 'global/footer.twig' %}
+{% endblock %}

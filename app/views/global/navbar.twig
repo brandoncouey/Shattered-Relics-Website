@@ -76,10 +76,17 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ml-auto">
 
-				<li class="nav-item">
-					<a class="nav-link px-4" href="{{ url('game') }}">
-						Game
-					</a>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Game</a>
+					<div class="dropdown-menu dropdown-menu-right animated fadeInDown fastest" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="{{ url('game') }}">Overview</a>
+						<a class="dropdown-item" href="{{ url('game/trades') }}">Trades</a>
+						<a class="dropdown-item" href="{{ url('game/questing') }}">Questing</a>
+						<a class="dropdown-item" href="{{ url('game/races') }}">Races</a>
+						<a class="dropdown-item" href="{{ url('game/classes') }}">Classes</a>
+						<a class="dropdown-item" href="{{ url('game/pvp') }}">PvP</a>
+						<a class="dropdown-item" href="{{ url('game/pve') }}">PvE</a>
+					</div>
 				</li>
 
 				<li class="nav-item">
