@@ -230,3 +230,7 @@ form.newsletter input.form-control {
     background-color: #202020;
     box-shadow: 0 0 50px #000;
 }
+
+.navbar.navbar-expand-lg {
+    z-index: 5 !important;
+}
